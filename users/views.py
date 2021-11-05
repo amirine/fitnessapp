@@ -17,7 +17,7 @@ class RegisterUser(CreateView):
         """Redirection to Home page in case of successful registration"""
         user = form.save()
         login(self.request, user)
-        return redirect('home')
+        return redirect('dashboard')
 
 
 class LoginUser(LoginView):
@@ -26,7 +26,7 @@ class LoginUser(LoginView):
     template_name = 'users/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('dashboard')
 
 
 def logout_user(request):

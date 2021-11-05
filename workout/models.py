@@ -9,7 +9,7 @@ class Training(models.Model):
     is_fixed = models.BooleanField(default=False)
     categories = models.ManyToManyField('Category')
     equipment = models.ManyToManyField('Equipment')
-    duration = models.IntegerField()
+    duration = models.IntegerField(default=0)
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -26,8 +26,8 @@ class Training(models.Model):
 class Exercise(models.Model):
     """Model for Exercises included in Training"""
     name = models.CharField(max_length=50)
-    weight = models.DecimalField(max_digits=200)
-    repetitions = models.DecimalField(max_digits=1000)
+    weight = models.DecimalField(max_digits=200, decimal_places=1)
+    repetitions = models.DecimalField(max_digits=1000, decimal_places=1)
     training = models.ForeignKey('Training', default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

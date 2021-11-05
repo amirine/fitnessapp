@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FitnessTracker</title>
+    {% load static %}
+</head>
+
+
+<body>
+<p><a id="logout" href="{% url 'logout' %}">Logout </a></p>
+<p><a href="{% url 'dashboard' %}">Home</a></p>
+<p><a href="{% url 'add_training' %}">New Training</a></p>
+<p><a href="{% url 'all_trainings' %}">All Trainings</a></p>
+<br>
+
+<p>{{ request.user.username }}</p>
+
+<h2>All Workouts</h2>
+
+{% if trainings %}
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Date:</th>
+            <th scope="col">Workout:</th>
+            <th scope="col">Actions:</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for training in trainings %}
+            <tr>
+                <td scope="row">{{training.created_at | date}}</td>
+                <td><em>{{training.name}}</em></td>
+                <td>
+                    <form action="{% url 'training' training.pk %}">
+                        <button type="submit">View</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <h4>You don't have any workouts yet.</h4>
+    <h6>There's no time like the present! 💪</h6>
+    <a href="{% url 'add_training' %}">Start a Workout</a>
+{% endif %}
 </body>
+
 </html>

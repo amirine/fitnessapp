@@ -35,18 +35,20 @@ def add_training_page(request):
         training = {
             "name": request.POST["name"],
             "description": request.POST["description"],
+            "user": request.user,
         }
         new_training = Training.objects.create(**training)
-        return redirect('add_training', new_training.id)
+        return redirect('training', new_training.pk)
 
 
 @login_required
-def training_page(request, pk):
+def training_page(request, training_pk):
     """View for Training display"""
 
+    # if request.method == "GET":
     context = {
-        'training': Training.objects.get(id=pk),
-        'exercises': Exercise.objects.filter(workout__id=pk).order_by('-updated_at'),
+        'training': Training.objects.get(pk=training_pk),
+        'exercises': Exercise.objects.filter(training__pk=training_pk).order_by('-updated_at'),
     }
     return render(request, "workout/training_page.html", context)
 
@@ -71,32 +73,31 @@ def all_trainings_page(request):
 
 
 @login_required
-def exercise_page(request, pk):
+def exercise_page(request, training_pk):
     """View for Exercise input"""
 
-    # if request.method == "GET":
-    #     Exercise.objects.get(id=request.GET["exercise_id"]).delete()
-    #     return redirect('training', id)
+    if request.method == "GET":
+        Exercise.objects.get(pk=request.GET["exercise_id"]).delete()
+        return redirect('training', training_pk)
 
     if request.method == "POST":
-        # print('hey')
         new_exercise = {
             "name": request.POST["name"],
             "weight": request.POST["weight"],
             "repetitions": request.POST["repetitions"],
-            "workout": Training.objects.get(id=pk),
+            "training": Training.objects.get(pk=training_pk),
         }
         Exercise.objects.create(**new_exercise)
-        return redirect('training', pk)
+        return redirect('training', training_pk)
 
 
 @login_required
-def training_edit_page(request, pk):
+def training_edit_page(request, training_pk):
     """View for Training info edition"""
 
     context = {
-        'training': Training.objects.get(id=pk),
-        'exercises': Exercise.objects.filter(workout__id=pk),
+        'training': Training.objects.get(pk=training_pk),
+        'exercises': Exercise.objects.filter(training__pk=training_pk),
     }
 
     if request.method == "GET":
@@ -106,10 +107,9 @@ def training_edit_page(request, pk):
         training = {
             'name': request.POST['name'],
             'description': request.POST['description'],
-            'training_id': context['training'].id,
         }
-        Training.objects.update(**training)
-        return redirect('training', context['training'].id)
+        Training.objects.filter(pk=training_pk).update(**training)
+        return redirect('training', training_pk)
 
 
 @login_required
