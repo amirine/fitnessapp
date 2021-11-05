@@ -2,11 +2,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css"
+      href="{% static '/workout/css/navigation_bar_style.css' %}">
 </head>
 <body>
 
+<ul>
+  <li><a href="{% url 'home' %}">HOME</a></li>
+    <li><a href="{% url 'trainings' %}" class="dropbtn">TRAININGS</a></li>
+    <li><a href="/">SCHEDULE</a></li>
+    <li><a href="/">FAQ</a></li>
+        <li class="dropdown">
+    <a href="/">{{ request.user.username }}</a>
+    <div class="dropdown-content">
+            <a href="/">PROFILE</a>
+            <a href="{% url 'logout' %}">LOG OUT</a>
+    </div>
+</ul>
 
-<div style="padding:20px;margin-top:30px;height:1500px;">
+<div>
   <h1>{% block title %}{% endblock %}</h1>
 {% block content %}{% endblock %}
 </div>

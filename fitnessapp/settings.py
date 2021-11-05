@@ -52,7 +52,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_URLCONF = 'fitnessapp.urls'
+TEMPLATE_DIR = os.path.join(CORE_DIR, "templates")  # ROOT dir for templates
 
 TEMPLATES = [
     {
@@ -136,3 +138,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # LOGOUT_REDIRECT_URL = '/'
+
+STATIC_ROOT = os.path.join(CORE_DIR, 'fitnessapp/staticfiles')
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(CORE_DIR, 'static'),
+)
