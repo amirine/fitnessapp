@@ -31,6 +31,8 @@ class Exercise(models.Model):
     training = models.ForeignKey('Training', default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    category = models.ForeignKey('Category', default=None, on_delete=models.CASCADE)
+    duration = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Exercises'

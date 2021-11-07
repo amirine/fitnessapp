@@ -3,71 +3,109 @@
 {% block title %} Login {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="/static/assets/css/login.css" type="text/css">
+{% endblock stylesheets %}
 
 {% block content %}
 
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-7">
-          <div class="card bg-secondary border-0 mb-0">
-            <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-              <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="/static/assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+{#                                    <div class="text-center">#}
+{#                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>#}
+{#                                    </div>#}
+{#                                    <form class="user">#}
+{#                                        <div class="form-group">#}
+{#                                            <input type="email" class="form-control form-control-user"#}
+{#                                                id="exampleInputEmail" aria-describedby="emailHelp"#}
+{#                                                placeholder="Enter Email Address...">#}
+{#                                        </div>#}
+{#                                        <div class="form-group">#}
+{#                                            <input type="password" class="form-control form-control-user"#}
+{#                                                id="exampleInputPassword" placeholder="Password">#}
+{#                                        </div>#}
+{#                                        <div class="form-group">#}
+{#                                            <div class="custom-control custom-checkbox small">#}
+{#                                                <input type="checkbox" class="custom-control-input" id="customCheck">#}
+{#                                                <label class="custom-control-label" for="customCheck">Remember#}
+{#                                                    Me</label>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <a href="index.html" class="btn btn-primary btn-user btn-block">#}
+{#                                            Login#}
+{#                                        </a>#}
+{#                                        <hr>#}
+{#                                        <a href="index.html" class="btn btn-google btn-user btn-block">#}
+{#                                            <i class="fab fa-google fa-fw"></i> Login with Google#}
+{#                                        </a>#}
+{#                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">#}
+{#                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook#}
+{#                                        </a>#}
+{#                                    </form>#}
+{#                                    <hr>#}
+{#                                    <div class="text-center">#}
+{#                                        <a class="small" href="forgot-password.html">Forgot Password?</a>#}
+{#                                    </div>#}
+{#                                    <div class="text-center">#}
+{#                                        <a class="small" href="register.html">Create an Account!</a>#}
+{#                                    </div>#}
+
+                                    <div class="text-center mb-4">
+              <h1>Create your account</h1>
+{#              <span>No credit card required</span>#}
+            </div>
+            <form>
+                <div class="form-group" style="display: flex; margin-bottom: 0.7rem">
+                <input type="text" name="signup-name" placeholder="Name" class="form-control" style="margin-right: 1rem">
+                    <input type="text" name="signup-surname" placeholder="Surname" class="form-control">
               </div>
-            </div>
-            <div class="card-body px-lg-5 py-lg-5">
-              <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+                <div class="form-group" style="margin-bottom: 0.7rem">
+                <input type="text" name="signup-surname" placeholder="Surname" class="form-control">
+                    </div>
+              <div class="form-group" style="margin-bottom: 0.7rem">
+                <input type="email" name="signup-email" placeholder="Email Address" class="form-control">
               </div>
-              <form role="form" action="/">
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+              <div class="form-group" style="margin-bottom: 0.7rem">
+                <input type="password" name="signup-password" placeholder="Password" class="form-control">
+{#                <small class="text-muted">Must be at least 8 characters</small>#}
+              </div>
+              <div class="form-group" style="margin-bottom: 2rem">
+                <input type="password" name="signup-password-confirm" placeholder="Confirm password" class="form-control">
+              </div>
+              <div class="form-group" style="margin-bottom: 0.7rem">
+                <button class="btn-block btn btn-primary" type="submit">Register Account</button>
+              </div>
+
+              <div class="text-center text-muted">
+                <span>Already have an account? <a href="#">Login</a>
+                </span>
+              </div>
+            </form>
+
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
-                  </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Password" type="password">
-                  </div>
-                </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
-                  </label>
-                </div>
-                <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Sign in</button>
-                </div>
-              </form>
+
             </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-              <a href="/register.html" class="text-light"><small>Create Account</small></a>
-            </div>
-            <div class="col-6 text-right">
-              <a href="https://appseed.us?ref=j2-argon-demo" class="text-light"><small>Get Support</small></a>
-            </div>
-          </div>
+
         </div>
-      </div>
+
     </div>
 
 {% endblock content %}

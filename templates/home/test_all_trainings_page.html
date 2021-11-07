@@ -1,0 +1,196 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+{#            <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>#}
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a></li>
+{#                <li class="breadcrumb-item"><a href="#">Tables</a></li>#}
+                <li class="breadcrumb-item active" aria-current="page">{{ training.name}}</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <a href="#" class="btn btn-sm btn-neutral" data-toggle="modal" data-target="#exampleModal">Добавить упражнение</a>
+            <a href="{% url 'training_delete' training.pk %}" class="btn btn-sm btn-neutral">Удалить тренировку</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+
+              <h6 class="card-title text-uppercase text-muted mb-0">Updated {{ training.updated_at | timesince }} ago</h6>
+            <div style="margin-bottom: -1.5%; margin-top: 0%">
+                <h2>{{ training.name }}</h2>
+            </div>
+
+
+{#            <h3 class="mb-0">My workouts</h3>#}
+          </div>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Название упражнения</th>
+                  <th scope="col" class="sort" data-sort="budget">Повторения</th>
+                  <th scope="col" class="sort" data-sort="status">Вес</th>
+                  <th scope="col">Создатель</th>
+                  <th scope="col" class="sort" data-sort="completion">Категория</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="list">
+
+{#              {% for training in trainings %}#}
+              {% for exercise in training.exercise_set.all %}
+
+                <tr>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                          <h2><span class="badge badge-default">{{ exercise.name }}</span></h2>
+                      </div>
+                    </div>
+                  </th>
+                  <td class="budget">
+                    {{ exercise.repetitions|floatformat }} подходов
+                  </td>
+                  <td>
+                    <span class="badge badge-dot mr-4">
+                      <span class="status">{{ exercise.weight }} кг</span>
+                    </span>
+                  </td>
+                  <td>
+                    <div class="avatar-group">
+                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
+                        <img alt="Image placeholder" src="/static/assets/img/theme/user.jpg">
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                      <span class="badge badge-pill badge-primary badge-lg">{{ exercise.category.name }}</span>
+                  </td>
+                  <td class="text-right">
+
+
+                      {% if training.is_fixed == False %}
+        <form id="delete-exercise-form" action="{% url 'exercise' training.pk %}" method="GET">
+        {% csrf_token %}
+            <input type="hidden" id="exercise_id" name="exercise_id" value="{{ exercise.pk }}">
+            <input type="hidden" id="category_id" name="category_id" value="{{ exercise.category.pk }}">
+                <button type="submit" class="close"  aria-label="Close">
+                    <span>&times;</span></button>
+    </form>
+                {% endif %}
+
+
+{#                      #}
+{#                    <div class="dropdown">#}
+{#                        <button type="submit" class="close"  aria-label="Close">#}
+{#                    <span aria-hidden="true">&times;</span></button>#}
+{#                    </div>#}
+                  </td>
+                </tr>
+
+{#              {% endfor %}#}
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+    {% include "includes/footer.html" %}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+{#          <h6 class="card-title text-uppercase text-muted mb-0">Updated {{ training.updated_at | timesince }} ago</h6>#}
+        <h6 class="card-title text-uppercase text-muted mb-0" id="exampleModalLabel">{{ training.name }}</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form id="exercise-form" action="{% url 'exercise' training.pk %}" method="POST">
+      <div class="modal-body">
+
+
+          <div class="p-5" style="margin-bottom: -10%; margin-top: -10%">
+
+                                    <div class="text-center mb-4">
+              <h2>Добавить новое упражнение</h2>
+            </div>
+{#            <form id="exercise-form" action="{% url 'exercise' training.pk %}" method="POST">#}
+                {% csrf_token %}
+                <div class="form-group" style="margin-bottom: 0.7rem">
+                <input id="name" name="name" class="form-control" placeholder="Название упражнения" type="text">
+                    </div>
+                <div class="form-group" style="display: flex; margin-bottom: 0.7rem">
+                   <input id="repetitions" name="repetitions" class="form-control" placeholder="Подходы" type="number" style="margin-right: 0.7rem">
+                  <input id="weight" name="weight" class="form-control" placeholder="Вес" type="number">
+              </div>
+              <div class="form-group" style="margin-bottom: 2rem">
+                  <select class="form-control" id="category" name="category">
+                      {% for category in categories %}
+        <option>{{ category.name }}</option>
+        {% endfor %}
+    </select>
+              </div>
+
+
+
+
+                                </div>
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+  </div>
+
+
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
