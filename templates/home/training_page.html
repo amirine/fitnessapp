@@ -9,241 +9,249 @@
 
     <!-- Header -->
     <div class="header bg-primary pb-6">
-      <div class="container-fluid">
-        <div class="header-body">
-          <div class="row align-items-center py-4">
-            <div class="col-lg-6 col-7">
-{#              <h6 class="h2 text-white d-inline-block mb-0">{{ training.name}}</h6>#}
-              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md">
-                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a></li>
-{#                  <li class="breadcrumb-item"><a href="{% url 'add_training' %}">New Workout</a></li>#}
-                  <li class="breadcrumb-item active" aria-current="page">{{ training.name}}</li>
-                </ol>
-              </nav>
-            </div>
-            <div class="col-lg-6 col-5 text-right">
-              <a href="{% url 'training_edit' training.pk %}" class="btn btn-sm btn-neutral">Edit</a>
-              <a href="{% url 'training_delete' training.pk %}" class="btn btn-sm btn-neutral">Delete</a>
-                <a href="{% url 'training_fix' training.pk %}" class="btn btn-sm btn-neutral">Save</a>
-            </div>
-          </div>
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row align-items-center py-4">
+                    <div class="col-lg-6 col-7">
+                        <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md">
+                            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ training.name }}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-lg-6 col-5 text-right">
+                        <a href="{% url 'training_edit' training.pk %}" class="btn btn-sm btn-neutral">Edit</a>
+                        <a href="{% url 'training_delete' training.pk %}" class="btn btn-sm btn-neutral">Delete</a>
+                        <a href="{% url 'training_fix' training.pk %}" class="btn btn-sm btn-neutral">Save</a>
+                    </div>
+                </div>
 
-            <!-- Card stats -->
-
-
-        {% if training.is_fixed == False %}
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col">
-              <div class="card card-stats">
-                <!-- Card body -->
-                  <div class="card-body">
-
-<h6 class="card-title text-uppercase text-muted mb-0">Updated {{ training.updated_at | timesince }} ago</h6>
-            <div style="margin-bottom: -1.5%; margin-top: 1%">
-                <h2>{{ training.name }}</h2>
-            </div>
+                <!-- Card stats -->
 
 
-      <p class="mt-3 mb-0 text-sm" style="margin-top: -5%;">
+                {% if training.is_fixed == False %}
+                    <!-- Card stats -->
+                    <div class="row">
+                    <div class="col">
+                    <div class="card card-stats">
+                    <!-- Card body -->
+                    <div class="card-body">
+
+                    <h6 class="card-title text-uppercase text-muted mb-0">Updated {{ training.updated_at | timesince }}
+                        ago</h6>
+                    <div style="margin-bottom: -1.5%; margin-top: 1%">
+                        <h2>{{ training.name }}</h2>
+                    </div>
+
+
+                    <p class="mt-3 mb-0 text-sm" style="margin-top: -5%;">
                         <span style="white-space: normal">{{ training.description }}</span>
-                        </p>
-            <br>
+                    </p>
+                    <br>
 
-            <div class="row">
-            <div class="col">
-<div class="form-group">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <input type="checkbox" aria-label="Checkbox for following text input">
-        </div>
-      </div>
-      <input type="text" disabled=disabled class="form-control" style="color:blue" aria-label="Text input with checkbox" placeholder="Упражнение 1">
-    </div>
-</div>
-            </div>
-{#                <div class="col-auto"><button type="submit" class="close"  aria-label="Close">#}
-{#                    <span aria-hidden="true">&times;</span></button></div>#}
-                <div class="col">
-<div class="form-group">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <input type="checkbox" aria-label="Checkbox for following text input">
-        </div>
-      </div>
-      <input type="text" disabled=disabled class="form-control" style="color:blue" aria-label="Text input with checkbox" placeholder="Упражнение 1">
-    </div>
-</div>
-{#                    <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">#}
-{#  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>#}
-{#  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>#}
-{#</svg></div>#}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" aria-label="Checkbox for following text input">
+                                        </div>
+                                    </div>
+                                    <input type="text" disabled=disabled class="form-control" style="color:blue"
+                                           aria-label="Text input with checkbox" placeholder="Упражнение 1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" aria-label="Checkbox for following text input">
+                                        </div>
+                                    </div>
+                                    <input type="text" disabled=disabled class="form-control" style="color:blue"
+                                           aria-label="Text input with checkbox" placeholder="Упражнение 1">
+                                </div>
+                            </div>
+                            {#                    <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">#}
+                            {#  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>#}
+                            {#  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>#}
+                            {#</svg></div>#}
 
-            </div>
+                        </div>
 
-{#                <div class="col-auto"><i class="fas fa-heart" style="align-content: center"></i></div>#}
-{#                <div class="col-auto"><button type="button" class="btn btn-primary">Edit</button></div>#}
-            </div>
+                        {#                <div class="col-auto"><i class="fas fa-heart" style="align-content: center"></i></div>#}
+                        {#                <div class="col-auto"><button type="button" class="btn btn-primary">Edit</button></div>#}
+                    </div>
 
-            <div class="row">
-            <div class="col">
-<div class="form-group">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <input type="checkbox" aria-label="Checkbox for following text input">
-        </div>
-      </div>
-      <input type="text" disabled=disabled class="form-control" style="color:blue" aria-label="Text input with checkbox" placeholder="Упражнение 1">
-    </div>
-</div>
-            </div>
-                <div class="col">
-<div class="form-group">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          <input type="checkbox" aria-label="Checkbox for following text input">
-        </div>
-      </div>
-      <input type="text" disabled=disabled class="form-control" style="color:blue" aria-label="Text input with checkbox" placeholder="Упражнение 1">
-    </div>
-</div>
-            </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" aria-label="Checkbox for following text input">
+                                        </div>
+                                    </div>
+                                    <input type="text" disabled=disabled class="form-control" style="color:blue"
+                                           aria-label="Text input with checkbox" placeholder="Упражнение 1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" aria-label="Checkbox for following text input">
+                                        </div>
+                                    </div>
+                                    <input type="text" disabled=disabled class="form-control" style="color:blue"
+                                           aria-label="Text input with checkbox" placeholder="Упражнение 1">
+                                </div>
+                            </div>
+                        </div>
 
-{#                <div class="col-auto"><i class="fas fa-heart" style="align-content: center"></i></div>#}
-{#                <div class="col-auto"><button type="button" class="btn btn-primary">Edit</button></div>#}
-            </div>
-
-
-
-            <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Exercise" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <input type="text" class="form-control" placeholder="Repetitions" aria-label="Recipient's username" aria-describedby="button-addon2">
- <input type="text" class="form-control" placeholder="Weight" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <div class="input-group-append">
-    <button class="btn btn-primary" type="button" id="button-addon2">Добавить</button>
-  </div>
-</div>
-            <br>
+                        {#                <div class="col-auto"><i class="fas fa-heart" style="align-content: center"></i></div>#}
+                        {#                <div class="col-auto"><button type="button" class="btn btn-primary">Edit</button></div>#}
+                    </div>
 
 
-            <div class="tab-content" style="padding: 1.25rem;
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Exercise" aria-label="Recipient's username"
+                               aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Repetitions"
+                               aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="Weight" aria-label="Recipient's username"
+                               aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="button-addon2">Добавить</button>
+                        </div>
+                    </div>
+                    <br>
+
+
+                    <div class="tab-content" style="padding: 1.25rem;
 	border: 1px solid #e6ecf1;
 	border-radius: .25rem;
 	background-color: #fff;background: #dfe2f1;opacity: .7;">
-            fghjklkjhghjk
-          </div>
+                        fghjklkjhghjk
+                    </div>
 
-            <br>
-
-
-
-{#                      {% if training.is_fixed == False %}#}
-{#    <form id="exercise-form" action="{% url 'exercise' training.pk %}" method="POST">#}
-{#        {% csrf_token %}#}
-{#        <input id="name" type="text" name="name" placeholder="Name">#}
-{#        <input id="weight" type="text" name="weight" placeholder="Weight (lbs)">#}
-{#        <input id="repetitions" type="text" name="repetitions" placeholder="Repetitions">#}
-{#        <input id="add" type="submit" value="Add Exercise">#}
-{#    </form>#}
-{#{% endif %}#}
+                    <br>
 
 
 
-                      <form id="exercise-form" action="{% url 'exercise' training.pk %}" method="POST">
-                      {% csrf_token %}
-                  <div class="form-group">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Name</span>
-        </div>
-        <input id="name" name="name" type="text" class="form-control" placeholder="Exercise name" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-</div>
-
-       <div class="form-group">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">rep</span>
-        </div>
-        <input id="repetitions" name="repetitions" type="text" class="form-control" placeholder="Repetitions" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-</div>
-                      <div class="form-group">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">kg</span>
-        </div>
-        <input id="weight" name="weight" type="text" class="form-control" placeholder="Weight" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-</div>
-
-
-                          <div class="form-group">
-    <select class="form-control" id="category" name="category">
-        {% for category in categories %}
-        <option>{{ category }}</option>
-        {% endfor %}
-    </select>
-  </div>
+                    {#                      {% if training.is_fixed == False %}#}
+                    {#    <form id="exercise-form" action="{% url 'exercise' training.pk %}" method="POST">#}
+                    {#        {% csrf_token %}#}
+                    {#        <input id="name" type="text" name="name" placeholder="Name">#}
+                    {#        <input id="weight" type="text" name="weight" placeholder="Weight (lbs)">#}
+                    {#        <input id="repetitions" type="text" name="repetitions" placeholder="Repetitions">#}
+                    {#        <input id="add" type="submit" value="Add Exercise">#}
+                    {#    </form>#}
+                    {#{% endif %}#}
 
 
 
+                    <form id="exercise-form" action="{% url 'exercise' training.pk %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Name</span>
+                                </div>
+                                <input id="name" name="name" type="text" class="form-control"
+                                       placeholder="Exercise name" aria-label="Username"
+                                       aria-describedby="basic-addon1">
+                            </div>
+                        </div>
 
-                      <button class="btn btn-primary" type="submit">Button</button>
-                      </form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">rep</span>
+                                </div>
+                                <input id="repetitions" name="repetitions" type="text" class="form-control"
+                                       placeholder="Repetitions" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">kg</span>
+                                </div>
+                                <input id="weight" name="weight" type="text" class="form-control" placeholder="Weight"
+                                       aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
 
-                  {% endif %}
-                  </div>
-                </div>
-              </div>
-            </div>
 
-         {% if exercises %}
-        {% for exercise in exercises %}
+                        <div class="form-group">
+                            <select class="form-control" id="category" name="category">
+                                {% for category in categories %}
+                                    <option>{{ category }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
 
 
-<br>
-            <div class="alert alert-secondary alert-dismissible fade show" role="alert" >
+                        <button class="btn btn-primary" type="submit">Button</button>
+                    </form>
 
-    <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-    <span class="alert-text"><strong>{{ exercise.name }}</strong> {{ exercise.repetitions|floatformat }} rep {{ exercise.weight|floatformat }} kg</span>
-    {% if training.is_fixed == False %}
-        <form id="delete-exercise-form" action="{% url 'exercise' training.pk %}" method="GET">
-        {% csrf_token %}
-            <input type="hidden" id="exercise_id" name="exercise_id" value="{{ exercise.pk }}">
-            <input type="hidden" id="category_id" name="category_id" value="{{ exercise.category.pk }}">
-            <input type="hidden" id="workout_id" name="workout_id" value="{{ training.pk }}">
-                <button type="submit" class="close"  aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-    </form>
                 {% endif %}
-</div>
-        {% endfor %}
-        {% endif %}
+                </div>
+                </div>
+                </div>
+                </div>
 
-          </div>
+                {% if exercises %}
+                    {% for exercise in exercises %}
+
+
+                        <br>
+                        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+
+                            <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                            <span class="alert-text"><strong>{{ exercise.name }}</strong> {{ exercise.repetitions|floatformat }} rep {{ exercise.weight|floatformat }} kg</span>
+                            {% if training.is_fixed == False %}
+                                <form id="delete-exercise-form" action="{% url 'exercise' training.pk %}" method="GET">
+                                    {% csrf_token %}
+                                    <input type="hidden" id="exercise_id" name="exercise_id" value="{{ exercise.pk }}">
+                                    <input type="hidden" id="category_id" name="category_id"
+                                           value="{{ exercise.category.pk }}">
+                                    <input type="hidden" id="workout_id" name="workout_id" value="{{ training.pk }}">
+                                    <button type="submit" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
         </div>
-      </div>
+    </div>
     </div>
 
     <!-- Page content -->
     <div class="container-fluid mt--6">
-      {% include "includes/footer.html" %}
+        {% include "includes/footer.html" %}
 
     </div>
 
 {% endblock content %}
 
-<!-- Specific JS goes HERE --> 
+<!-- Specific JS goes HERE -->
 {% block javascripts %}
 
-  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
     <script src="/static/assets/js/components/validation/form_valid.js"></script>
 
 {% endblock javascripts %}

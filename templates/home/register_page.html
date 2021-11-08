@@ -1,75 +1,107 @@
-{% extends 'layouts/base-fullscreen.html' %}
+{% load static %}
+<!doctype html>
+<html lang="en">
 
-{% block title %} Login {% endblock title %}
+<head>
+    <meta charset="utf-8">
+    <title>Регистрация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A corporate Bootstrap theme by Medium Rare">
 
-<!-- Specific CSS goes HERE -->
-{% block stylesheets %}
-    <link rel="stylesheet" href="/static/assets/css/login.css" type="text/css">
-{% endblock stylesheets %}
-
-{% block content %}
-
-    <!-- Page content -->
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-
-                                    <div class="text-center mb-4">
-              <h1>Create your account</h1>
-            </div>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group" style="display: flex; margin-bottom: 0.7rem">
-                    {{ form.first_name }}
-                    {{ form.last_name }}
-              </div>
-                <div class="form-group" style="margin-bottom: 0.7rem">
-                {{ form.username }}
-                    </div>
-              <div class="form-group" style="margin-bottom: 0.7rem">
-                  {{ form.email }}
-              </div>
-              <div class="form-group" style="margin-bottom: 0.7rem">
-                  {{ form.password1 }}
-              </div>
-              <div class="form-group" style="margin-bottom: 2rem">
-                  {{ form.password2 }}
-              </div>
-              <div class="form-group" style="margin-bottom: 0.7rem">
-                <button class="btn-block btn btn-primary" type="submit">Register Account</button>
-              </div>
-
-              <div class="text-center text-muted">
-                <span>Already have an account? <a href="{% url 'login' %}">Login</a>
-                </span>
-              </div>
-            </form>
+    <!-- Favicon - loaded as static -->
+    <link rel="icon" href="/static/assets/img/brand/favicon.ico" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="/static/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Page plugins -->
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="/static/assets/css/argon.css?v=1.2.0" type="text/css">
 
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <link href="{% static 'assets/css/test.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+          type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+          type="font/woff2" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+<div class="loader">
+    <div class="loading-animation"></div>
+</div>
+
+<section class="row no-gutters min-vh-100 p-0">
+    <div class="col-lg-4 bg-primary-3 d-flex justify-content-end" style="width: 50%">
+        <img src="{% static 'assets/img/theme/register.jpg' %}" alt="Image" class="bg-image">
+    </div>
+    <div class="col px-5 position-relative d-flex align-items-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <div class="form-group mb-4">
+                    <h1 class="" style="">👋 Привет,</h1>
+                    <h1 class="" style="margin-top: -3%">давай знакомиться</h1>
                 </div>
 
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group" style="display: flex; margin-bottom: 0.7rem">
+                        {{ form.first_name }}
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group small" style="margin-bottom: 0.7rem; color: red">
+                        {% for err in form.username.errors %}
+                            {{ err }}
+                        {% endfor %}
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group small" style="margin-bottom: 0.7rem; color: red">
+                        {% for err in form.email.errors %}
+                            {{ err }}
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        {{ form.password1 }}
+                    </div>
+                    <div class="form-group small" style="margin-bottom: 0.7rem; color: red">
+                        {% for err in form.password1.errors %}
+                            {{ err }}
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        {{ form.password2 }}
+                    </div>
+                    <div class="form-group small" style="margin-bottom: 2rem; color: red">
+                        {% for err in form.password2.errors %}
+                            {{ err }}
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        <button class="btn-block btn btn-primary" type="submit">Создать аккаунт</button>
+                    </div>
+
+                    <div class="text-center text-muted">
+                <span class="fa-medium">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a>
+                </span>
+                    </div>
+                </form>
+
             </div>
-
         </div>
-
     </div>
+</section>
+</body>
+</html>
 
-{% endblock content %}
-
-<!-- Specific JS goes HERE --> 
-{% block javascripts %}{% endblock javascripts %}

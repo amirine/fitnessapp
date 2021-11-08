@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from .models import Training, Category, Exercise, Equipment
+from .models import Training, Category, Exercise
 
 
 @login_required
@@ -41,7 +41,7 @@ def training_page(request, training_pk):
         'exercises': Exercise.objects.filter(training__pk=training_pk).order_by('-updated_at'),
         'categories': Category.objects.all(),
     }
-    return render(request, 'home/test_all_trainings_page.html', context)
+    return render(request, 'home/single_training_page.html', context)
 
 
 @login_required
@@ -103,5 +103,16 @@ def training_fix_page(request, training_pk):
     if request.method == "GET":
         training = Training.objects.get(pk=training_pk)
         training.is_fixed = True
+        training.save()
+        return redirect('training', training_pk)
+
+
+@login_required
+def training_unfix_page(request, training_pk):
+    """View for fixing Training results"""
+
+    if request.method == "GET":
+        training = Training.objects.get(pk=training_pk)
+        training.is_fixed = False
         training.save()
         return redirect('training', training_pk)

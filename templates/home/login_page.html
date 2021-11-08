@@ -1,65 +1,83 @@
-{% extends 'layouts/base-fullscreen.html' %}
-
-{% block title %} Login {% endblock title %}
-
-<!-- Specific CSS goes HERE -->
-{% block stylesheets %}
-    <link rel="stylesheet" href="/static/assets/css/login.css" type="text/css">
-{% endblock stylesheets %}
-
-{% block content %}
-
-    <!-- Page content -->
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row" style="height: 500px;">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-
-                                    <div class="text-center mb-4">
-              <h1>Login</h1>
-            </div>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group" style="margin-bottom: 0.7rem">
-                {{ form.username }}
-                    </div>
-              <div class="form-group" style="margin-bottom: 2rem">
-                  {{ form.password }}
-              </div>
-              <div class="form-group" style="margin-bottom: 0.7rem">
-                <button class="btn-block btn btn-primary" type="submit">Login</button>
-              </div>
-
-              <div class="text-center text-muted">
-                <span>No account yet? <a href="{% url 'register' %}">Register</a>
-                </span>
-              </div>
-            </form>
+{% load static %}
 
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!doctype html>
+<html lang="en">
 
-            </div>
+<head>
+    <meta charset="utf-8">
+    <title>Войти</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A corporate Bootstrap theme by Medium Rare">
+    <!-- Favicon - loaded as static -->
+    <link rel="icon" href="/static/assets/img/brand/favicon.ico" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="/static/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Page plugins -->
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="/static/assets/css/argon.css?v=1.2.0" type="text/css">
 
-        </div>
+
+    <link href="{% static 'assets/css/test.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+          type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+          type="font/woff2" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+<div class="loader">
+    <div class="loading-animation"></div>
+</div>
+
+<section class="row no-gutters min-vh-100 p-0">
+    <div class="col-lg-4 bg-primary-3 d-flex justify-content-end">
+        <img src="{% static 'assets/img/theme/login.jpg' %}" alt="Image" class="bg-image">
 
     </div>
+    <div class="col px-5 position-relative d-flex align-items-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <div class="form-group mb-4">
+                    <h1 class="" style="">👋 Привет,</h1>
+                    <h1 class="" style="margin-top: -3%">мы уже соскучились</h1>
+                </div>
 
-{% endblock content %}
 
-<!-- Specific JS goes HERE --> 
-{% block javascripts %}{% endblock javascripts %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        {{ form.password }}
+                    </div>
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        {% if form.non_field_errors %}
+                            {% for err in form.non_field_errors %}
+                                <div class="small" style="margin-bottom: 0.7rem; color: red">{{ err }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0.7rem">
+                        <button class="btn-block btn btn-primary" type="submit">Войти</button>
+                    </div>
+
+                    <div class="text-center text-muted">
+                <span>Еще нет аккаунта? <a href="{% url 'register' %}">Создать аккаунт</a>
+                </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+

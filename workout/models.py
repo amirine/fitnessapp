@@ -4,6 +4,7 @@ from django.db import models
 
 class Training(models.Model):
     """Model for training"""
+
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=256)
     is_fixed = models.BooleanField(default=False)
@@ -25,6 +26,7 @@ class Training(models.Model):
 
 class Exercise(models.Model):
     """Model for Exercises included in Training"""
+
     name = models.CharField(max_length=50)
     weight = models.DecimalField(max_digits=200, decimal_places=1)
     repetitions = models.DecimalField(max_digits=1000, decimal_places=1)
@@ -44,6 +46,7 @@ class Exercise(models.Model):
 
 class Category(models.Model):
     """Model for Training category"""
+
     name = models.CharField(max_length=24)
 
     class Meta:
@@ -56,6 +59,7 @@ class Category(models.Model):
 
 class Equipment(models.Model):
     """Model for Training equipment"""
+
     name = models.CharField(max_length=24)
 
     class Meta:
