@@ -137,9 +137,6 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-blue">
-                        <span class="badge badge-primary">{{ training.name }}</span>
-                        {#                        <h4 class="card-title text-muted mb-0 text-white"#}
-                        {#                            id="exampleModalLabel">+{{ training.name }}</h4>#}
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="text-white">&times;</span>
                         </button>
@@ -151,6 +148,7 @@
                             <div class="p-5" style="margin-bottom: -20%; margin-top: -10%">
 
                                 {% csrf_token %}
+                            <span class="badge badge-primary" style="margin-bottom: 0.7rem">{{ training.name }}</span>
                                 <div class="form-group" style="margin-bottom: 0.7rem">
                                     <input id="name" name="name" class="form-control" placeholder="Название упражнения"
                                            type="text">
