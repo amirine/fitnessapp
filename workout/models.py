@@ -28,8 +28,8 @@ class Exercise(models.Model):
     """Model for Exercises included in Training"""
 
     name = models.CharField(max_length=50)
-    weight = models.DecimalField(max_digits=200, decimal_places=1)
-    repetitions = models.DecimalField(max_digits=1000, decimal_places=1)
+    weight = models.DecimalField(max_digits=200, decimal_places=1, default=0)
+    repetitions = models.DecimalField(max_digits=1000, decimal_places=1, default=0)
     training = models.ForeignKey('Training', default=None, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
